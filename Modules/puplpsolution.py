@@ -1,7 +1,16 @@
 from pulp import *
+import time
 
+def timer(func):
+    def timerON(*args):
+        start = time.time()
+        stop = time.time()
+        print ("Time :")
+        print(stop - start)
+        return "Return to x-values: {}\nObject ist: {:.4f}".format(func(*args)[0][1:len(func(*args)[0])],func(*args)[1])
+    return timerON
 
-
+@timer
 def optimization():
 
     x0 = pulp.LpVariable("x0", lowBound=0)
@@ -41,6 +50,5 @@ def optimization():
     for variable in varsdict:
         returntox.append(round(varsdict[variable]/varsdict['x0'],4))
         
-    return returntox[1:8],value(problem.objective)
+    return [returntox,value(problem.objective)]
    
-print("Return to x-values: {} \nObject ist: {:.4f}".format(optimization()[0],optimization()[1]) )
