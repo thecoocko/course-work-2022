@@ -1,6 +1,6 @@
 from __future__ import annotations
 from Modules.puplpsolution import optimization
-from Modules.scipysolution import cvxoptOptimization
+from Modules.cvxopt import cvxoptOptimization
 
 
 
