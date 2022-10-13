@@ -1,13 +1,15 @@
+from numpy import result_type
 from pulp import *
 import time
 
 def timer(func):
     def timerON(*args):
         start = time.time()
+        result = func(*args)
         stop = time.time()
-        print ("Time :")
-        print(stop - start)
-        return "Return to x-values: {}\nObject ist: {:.4f}".format(func(*args)[0][1:len(func(*args)[0])],func(*args)[1])
+        total_time = stop - start
+        # 
+        return "ESTIMATED TIME {}\n Return to x-values: {}\nObject is: {:.4f}".format(total_time,result[0][1:len(result[0])],result[1])
     return timerON
 
 @timer
